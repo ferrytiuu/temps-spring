@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -36,6 +37,17 @@ public class indexController {
 
 
         model.addAttribute("ciutats", ciutats);
+
+        HashMap<String, String> icnosPronostics = new HashMap<String, String>();
+        icnosPronostics.put("Sol", "wi-day-sunny");
+        icnosPronostics.put("Núvol", "wi-cloud");
+        icnosPronostics.put("Pluja", "wi-rain");
+        icnosPronostics.put("Tempesta", "wi-thunderstorm");
+        icnosPronostics.put("Neu", "wi-snow");
+
+
+
+        model.addAttribute("icnosPronostics", icnosPronostics);
         return "index";
     }
 }

@@ -103,11 +103,14 @@ public class ClimaController {
         repositori.save(ciu1);
 
 
-        //if(alumnes == null) alumnes = new ArrayList<Alumne>();
-        /*alumnes.add(a);
-        if (!model.containsAttribute("alumnes")) {
-            model.addAttribute("alumnes", alumnes);
-        }*/
+        HashMap<String, String> icnosPronostics = new HashMap<String, String>();
+        icnosPronostics.put("Sol", "wi-day-sunny");
+        icnosPronostics.put("Núvol", "wi-cloud");
+        icnosPronostics.put("Pluja", "wi-rain");
+        icnosPronostics.put("Tempesta", "wi-thunderstorm");
+        icnosPronostics.put("Neu", "wi-snow");
+
+        model.addAttribute("icnosPronostics", icnosPronostics);
         return "index";
     }
 
@@ -152,6 +155,13 @@ public class ClimaController {
         return "pronostics";
     }
 
+    /**
+     * Pronòstics de la ciutat
+     * @param id
+     * @param ciutats
+     * @param model
+     * @return Retorna les dades de tots els dies de la ciutat especificada
+     */
     @DeleteMapping(value = "/pronostics/{objectID}")
     public String eliminarPronostic(@PathVariable("objectID") String id,
                                     @ModelAttribute("ciutats") List<Ciutat> ciutats,
@@ -169,6 +179,14 @@ public class ClimaController {
             }
 
         }
+        HashMap<String, String> icnosPronostics = new HashMap<String, String>();
+        icnosPronostics.put("Sol", "wi-day-sunny");
+        icnosPronostics.put("Núvol", "wi-cloud");
+        icnosPronostics.put("Pluja", "wi-rain");
+        icnosPronostics.put("Tempesta", "wi-thunderstorm");
+        icnosPronostics.put("Neu", "wi-snow");
+
+        model.addAttribute("icnosPronostics", icnosPronostics);
         return "index";
 
     }
@@ -177,6 +195,13 @@ public class ClimaController {
         return Pronostics.stream().filter(pronostic -> objectID.equals(pronostic.getId())).findFirst().orElse(null);
     }
 
+    /**
+     * Editar el pronòstic
+     * @param pronosticID
+     * @param ciutats
+     * @param model
+     * @return Retorna la pàgina d'edició del pronòstic especificat
+     */
     @GetMapping("/edit/{pronosticID}")
     public String editPronostic(@PathVariable("pronosticID") String pronosticID,
                                 @ModelAttribute("ciutats") List<Ciutat> ciutats,
@@ -196,6 +221,17 @@ public class ClimaController {
 
     }
 
+    /**
+     * Creació de nou pronòstic
+     * @param ciutats
+     * @param objectID
+     * @param ciutat
+     * @param data
+     * @param temperatura
+     * @param pronostic
+     * @param model
+     * @return Retorna el formulari per crear un nou pronòstic
+     */
     @PutMapping("/nouClima")
     public String editPronosticPOST(
             @ModelAttribute("ciutats") List<Ciutat> ciutats,
@@ -220,61 +256,15 @@ public class ClimaController {
             }
 
         }
+        HashMap<String, String> icnosPronostics = new HashMap<String, String>();
+        icnosPronostics.put("Sol", "wi-day-sunny");
+        icnosPronostics.put("Núvol", "wi-cloud");
+        icnosPronostics.put("Pluja", "wi-rain");
+        icnosPronostics.put("Tempesta", "wi-thunderstorm");
+        icnosPronostics.put("Neu", "wi-snow");
+
+        model.addAttribute("icnosPronostics", icnosPronostics);
         return "index";
 
     }
-
-    /*
-
-    @PostMapping("/afegirAlumne")
-    public String afegirAlumne(@ModelAttribute("alumnes") List<Alumne> alumnes,
-                               @RequestParam String nom,
-                               @RequestParam(defaultValue = "0", required = false) int nota,
-                               Model model) {
-        Alumne a = new Alumne(nom, nota);
-        repositori.save(a);
-        //if(alumnes == null) alumnes = new ArrayList<Alumne>();
-        alumnes.add(a);
-        if (!model.containsAttribute("alumnes")) {
-            model.addAttribute("alumnes", alumnes);
-        }
-        return "llistarAlumnes";
-    }
-
-
-
-    @PostMapping("/esborrarAlumne")
-    public String esborrarAlumne(
-            @ModelAttribute("alumnes") List<Alumne> alumnes,
-            @RequestParam String nom,
-            @RequestParam(defaultValue = "0", required = false) int nota,
-            Model model) {
-        alumnes.remove(new Alumne(nom, nota));
-        repositori.deleteAlumneByNom(nom);
-        model.addAttribute("alumnes", alumnes);
-        return "llistarAlumnes";
-    }
-
-    @PostMapping("/modificarAlumne")
-    public String modificarAlumne(
-            @ModelAttribute("alumnes") List<Alumne> alumnes,
-            @RequestParam String nom,
-            @RequestParam(defaultValue = "0", required = false) int nota,
-            Model model) {
-        alumnes.remove(new Alumne(nom, nota));
-        alumnes.add(new Alumne(nom, nota));
-        repositori.deleteAlumneByNom(nom);
-        repositori.save(new Alumne(nom, nota));
-        model.addAttribute("alumnes", alumnes);
-        return "llistarAlumnes";
-    }
-    @GetMapping("/llistarAlumnes")
-    public String llistarAlumnes(Model model, @ModelAttribute("alumnes") List<Alumne> alumnes) {
-        model.addAttribute("alumnes", alumnes);
-        return "llistarAlumnes";
-    }
-
-     */
-
-
 }
