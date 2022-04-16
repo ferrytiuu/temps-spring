@@ -1,6 +1,8 @@
 package edu.fje.daw2.m07;
 
+import edu.fje.daw2.m07.model.Alumne;
 import edu.fje.daw2.m07.model.Client;
+import edu.fje.daw2.m07.repositoris.M3_AlumneRepositori;
 import edu.fje.daw2.m07.repositoris.M4_ClientRepositori;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -30,7 +32,7 @@ public class M07Application {
     public static class M07uf2Application implements CommandLineRunner {
 
         @Autowired
-        private M4_ClientRepositori repositori;
+        private M3_AlumneRepositori repositori;
 
         public static void main(String[] args) {
             SpringApplication.run(M07uf2Application.class, args);
@@ -45,17 +47,18 @@ public class M07Application {
         public void run(String... args) throws Exception {
 
             //Joc de proves de MongoDB
-            repositori.deleteAll();
-            repositori.save(new Client("Sergi", "Grau", 1000));
-            repositori.save(new Client("Joan", "Grau", 2000));
-
-            for (Client c : repositori.findAll()) {
+            /*repositori.deleteAll();
+            repositori.save(new Alumne("Sergi",1));
+            repositori.save(new Alumne("PAdro",8));
+            for (Alumne c : repositori.findAll()) {
                 System.out.println(c);
             }
             System.out.println();
-            System.out.println(repositori.findByCognom("Sergi"));
+            */
 
-            for (Client c : repositori.findByCognom("Grau")) {
+            System.out.println(repositori.findByNom("Sergi"));
+
+            for (Alumne c : repositori.findByNota(8)) {
                 System.out.println(c);
             }
         }
