@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>DAW2</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link th:href="@{/css/estils.css}" rel="stylesheet"/>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Mapa del temps</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+                <a class="nav-link" href="/afegirClimes">Afegir</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div id="container">
+    <!--@thymesVar id="pronostic" type="edu.fje.daw2.m07.model.Pronostic"-->
+    <!--@thymesVar id="pronostics" type="edu.fje.daw2.m07.model.Pronostic"-->
+
+    <div class="carta" th:each="pronostic: ${pronostics}">
+        <!--/*@thymesVar id="data" type="LocalDate"*/-->
+        <!--/*@thymesVar id="temperatura" type="String"*/-->
+        <!--/*@thymesVar id="estat" type="String"*/-->
+        <span class="nomCiutat" th:text="${pronostic.data}"></span>
+        <div class="dadesCiutat"><span class="data" th:text="${pronostic.temperatura} +' ªC'"> </span><span class="temp" th:text="${pronostic.estat}"></span></div>
+    </div>
+</body>
+</html>
