@@ -15,9 +15,9 @@ import java.util.List;
 public interface MeterologiaRepositori extends MongoRepository<Ciutat, String> {
 
     Ciutat findByNom(String nom);
-    List<Ciutat> findByNota(int nota);
+    //List<Ciutat> findByNota(int nota);
 
-    List <Ciutat> deleteByNom(String nom);
-    Long deleteAlumneByNom(String nom);
+    //List <Ciutat> deleteByNom(String nom);
+    //Long deleteAlumneByNom(String nom);
 
 }

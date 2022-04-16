@@ -1,7 +1,9 @@
 package edu.fje.daw2.m07.controladors;
 
+import edu.fje.daw2.m07.entities.Ciutat;
 import edu.fje.daw2.m07.model.Alumne;
 import edu.fje.daw2.m07.repositoris.M3_AlumneRepositori;
+import edu.fje.daw2.m07.repositoris.MeterologiaRepositori;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,24 +21,25 @@ import java.util.List;
  * @version 1.0 24.02.21
  */
 @Controller
-@SessionAttributes("alumnes")
+@SessionAttributes("ciutat")
 public class ClimaController {
 
     @Autowired
-    private M3_AlumneRepositori repositori;
+    private MeterologiaRepositori repositori;
 
     //Set<Alumne> alumnes = new HashSet<>();
-    @ModelAttribute("alumnes")
-    public List<Alumne> inicialitzar() {
+    @ModelAttribute("ciutat")
+    public List<Ciutat> inicialitzar() {
 
-        List<Alumne> alumnes = new ArrayList<>();
-        for (Alumne d : repositori.findAll()) {
-            alumnes.add(d);
+        List<Ciutat> ciutats= new ArrayList<>();
+        for (Ciutat d : repositori.findAll()) {
+            ciutats.add(d);
         }
-        System.out.println(alumnes);
-        return alumnes;
+        System.out.println(ciutats);
+        return ciutats;
     }
 
+    /*
     @PostMapping("/afegirAlumne")
     public String afegirAlumne(@ModelAttribute("alumnes") List<Alumne> alumnes,
                                @RequestParam String nom,
@@ -84,6 +87,8 @@ public class ClimaController {
         model.addAttribute("alumnes", alumnes);
         return "llistarAlumnes";
     }
+
+     */
 
 
 }
