@@ -16,21 +16,6 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
-
-.carta:first-of-type{
-    color: black;
-}
-
-.carta:nth-of-type(2n){
-    color: black;
-}
-
-.carta:nth-of-type(3n){
-    color: black;
-}
-
-.carta:nth-of-type(4n){
     color: black;
 }
 
@@ -83,3 +68,12 @@ a{
 #grausCiutat{
     width: 100px;
 }
+
+.btn-success,.btn-danger{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.temperaturaPronostic{
+    font-size: 20px;
+    margin-right: 50px;}

@@ -39,20 +39,19 @@
 
         <span class="nomCiutat" th:text="${pronostic.data}"></span>
         <div class="dadesCiutat">
-            <span class="data" th:text="${pronostic.temperatura} +' ªC'"> </span>
-            <span class="temp" th:text="${pronostic.estat}"></span>
-            <i th:style="'font-size:25px;'" th:class="'wi ' + ${icnosPronostics.get(pronostic.estat)}"></i>
+            <span class="temperaturaPronostic" th:text="${pronostic.temperatura} +' ªC'"> </span>
+            <i th:style="'font-size:25px;margin-right: 50px;margin-left: 25px;'" th:class="'wi ' + ${icnosPronostics.get(pronostic.estat)}"></i>
 
         </div>
 
 
         <form th:action="@{'/pronostics/' + ${pronostic.id}}" th:method="DELETE">
             <!--/*@thymesVar id="id" type="id"*/-->
-            <button class="btn btn-danger btn-sm" type="submit">Esborra</button>
+            <button style="margin-right: 15px;" class="btn btn-danger btn-sm " type="submit">Esborrar</button>
         </form>
         <form th:action="@{'/edit/' + ${pronostic.id}}" th:method="GET">
             <!--/*@thymesVar id="id" type="id"*/-->
-            <button class="btn btn-danger btn-sm" type="submit">Editar</button>
+            <button style="margin-right: 15px;" class="btn btn-success btn-sm " type="submit">Editar</button>
         </form>
     </div>
 </div>
