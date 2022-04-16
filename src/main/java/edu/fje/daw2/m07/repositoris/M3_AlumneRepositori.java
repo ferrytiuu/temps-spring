@@ -1,7 +1,6 @@
 package edu.fje.daw2.m07.repositoris;
 
 import edu.fje.daw2.m07.model.Alumne;
-import edu.fje.daw2.m07.model.Client;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;

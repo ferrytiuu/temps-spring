@@ -1,9 +1,7 @@
 package edu.fje.daw2.m07;
 
 import edu.fje.daw2.m07.model.Alumne;
-import edu.fje.daw2.m07.model.Client;
 import edu.fje.daw2.m07.repositoris.M3_AlumneRepositori;
-import edu.fje.daw2.m07.repositoris.M4_ClientRepositori;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
