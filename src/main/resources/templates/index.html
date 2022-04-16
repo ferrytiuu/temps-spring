@@ -5,43 +5,35 @@
     <title>DAW2</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link th:href="@{/css/estils.css}" rel="stylesheet" />
 </head>
+
 <body>
-
-<div class="container">
-
-    <img src="../static/spring-logo.svg" alt="Spring" style="width: 25%">
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">DAW2 Spring</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
-                    <a class="nav-link" href="/afegirAlumne.html">Afegir alumne</a>
-                    <a class="nav-link" href="/esborrarAlumne.html">Esborrar alumne</a>
-                    <a class="nav-link" href="/modificarAlumne.html">Modificar alumne</a>
-                    <a class="nav-link" href="/llistarAlumnes">llistar alumnes</a>
-                </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Mapa del temps</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+                <a class="nav-link" href="afegirClimes.html">Afegir</a>
             </div>
         </div>
-    </nav>
-    <ul class="list-group">
-        <!--@thymesVar id="ciutat" type="edu.fje.daw2.m07.model.Ciutat"-->
-        <!--@thymesVar id="ciutats" type="edu.fje.daw2.m07.model.Ciutat"-->
+    </div>
+</nav>
 
-        <li class="list-group-item"  th:each="ciutat: ${ciutats}" >
-            <!--/*@thymesVar id="nom" type="String"*/-->
-            <span th:text="${ciutat.nom}" />
-            <!--/*@thymesVar id="data" type="LocalDate"*/-->
-            <span th:text="${ciutat.pronostics[0].data}" />
-        </li>
-
-    </ul>
+<div id="container">
+    <!--@thymesVar id="ciutat" type="edu.fje.daw2.m07.model.Ciutat"-->
+    <!--@thymesVar id="ciutats" type="edu.fje.daw2.m07.model.Ciutat"-->
+    <div class="carta" th:each="ciutat: ${ciutats}" >
+        <!--/*@thymesVar id="nom" type="String"*/-->
+        <!--/*@thymesVar id="temperatura" type="String"*/-->
+        <!--/*@thymesVar id="estat" type="String"*/-->
+        <span class="nomCiutat" th:text="${ciutat.nom}"></span><div class="dadesCiutat"><span class="data" th:text="${ciutat.pronostics[0].data}"></span><span class="temp" th:text="${ciutat.pronostics[0].temperatura}"></span><span class="pronostic" th:text="${ciutat.pronostics[0].estat}"></span></div>
+    </div>
 </div>
-
 </body>
 </html>
