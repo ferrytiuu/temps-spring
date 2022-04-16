@@ -32,29 +32,32 @@
 </nav>
 
 <div id="formulari">
-    <form action="/nouClima" method="post">
+    <form action="/nouClima"  th:method="${pronostic?.Id} != null ? 'PUT' : 'POST'"  method="post">
+        <input th:if="${pronostic?.Id}" type="hidden" th:name="objectID" th:value="${pronostic.Id}">
         <div class="mb-3">
             <!--@thymesVar id="ciutat" type="edu.fje.daw2.m07.model.Ciutat"-->
             <!--@thymesVar id="ciutats" type="edu.fje.daw2.m07.model.Ciutat"-->
+            <!--@thymesVar id="pronostic" type="edu.fje.daw2.m07.model.Pronostic"-->
             <select name="ciutat" class="form-control" id="selectCiutat">
                 <option>Ciutat</option>
-                <option th:each="ciutat : ${ciutats} " th:value="${ciutat.nom}" th:text="${ciutat.nom}"></option>
+                <option th:each="ciutat : ${ciutats} " th:value="${ciutat.nom}" th:text="${ciutat.nom}" th:selected="${ciutatNom == ciutat.nom }"></option>
             </select>
         </div>
         <div class="mb-3">
-            <input type="date" class="form-control" id="dataCiutat" name="data">
+            <!--@thymesVar id="date" type="java.time.LocalDate"-->
+            <input type="date" th:value="${pronostic?.data}" class="form-control" id="dataCiutat" name="data">
         </div>
         <div class="mb-3">
-            <input type="number" class="form-control" id="grausCiutat" name="temperatura" placeholder="ºC">
+            <input type="number" th:value="${pronostic?.temperatura}"  class="form-control" id="grausCiutat" name="temperatura" placeholder="ºC">
         </div>
         <div class="mb-3">
             <select name="pronostic" class="form-control" id="selectPronostic">
                 <option>Pronòstic</option>
-                <option value="Sol">Sol</option>
-                <option value="Núvol">Núvol</option>
-                <option value="Pluja">Pluja</option>
-                <option value="Tempesta">Tempesta</option>
-                <option value="Neu">Neu</option>
+                <option th:selected="${pronostic?.estat == 'sol' }"  value="Sol">Sol</option>
+                <option th:selected="${pronostic?.estat == 'Núvol' }" value="Núvol">Núvol</option>
+                <option th:selected="${pronostic?.estat == 'Pluja' }" value="Pluja">Pluja</option>
+                <option th:selected="${pronostic?.estat == 'Tempesta' }" value="Tempesta">Tempesta</option>
+                <option th:selected="${pronostic?.estat == 'Neu' }" value="Neu">Neu</option>
             </select>
         </div>
         <input class="btn btn-primary" type="submit" value="Afegeix">

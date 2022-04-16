@@ -6,6 +6,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link th:href="@{/css/estils.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/css/weather-icons.min.css%22%3E%60%60%60 ">
+    <link th:href="@{/css/weather-icons.css}" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -33,14 +36,23 @@
         <!--/*@thymesVar id="data" type="LocalDate"*/-->
         <!--/*@thymesVar id="temperatura" type="String"*/-->
         <!--/*@thymesVar id="estat" type="String"*/-->
+
         <span class="nomCiutat" th:text="${pronostic.data}"></span>
-        <div class="dadesCiutat"><span class="data" th:text="${pronostic.temperatura} +' ªC'"> </span><span class="temp"
-                                                                                                            th:text="${pronostic.estat}"></span>
+        <div class="dadesCiutat">
+            <span class="data" th:text="${pronostic.temperatura} +' ªC'"> </span>
+            <span class="temp" th:text="${pronostic.estat}"></span>
+            <i th:style="'font-size:25px;'" th:class="'wi ' + ${icnosPronostics.get(pronostic.estat)}"></i>
+
         </div>
-        <form th:action="@{/pronostic}" th:method="delete">
+
+
+        <form th:action="@{'/pronostics/' + ${pronostic.id}}" th:method="DELETE">
             <!--/*@thymesVar id="id" type="id"*/-->
-            <input type="hidden" th:value="${pronostic.id}">
             <button class="btn btn-danger btn-sm" type="submit">Esborra</button>
+        </form>
+        <form th:action="@{'/edit/' + ${pronostic.id}}" th:method="GET">
+            <!--/*@thymesVar id="id" type="id"*/-->
+            <button class="btn btn-danger btn-sm" type="submit">Editar</button>
         </form>
     </div>
 </div>

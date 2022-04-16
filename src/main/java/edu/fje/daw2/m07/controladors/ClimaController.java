@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -34,6 +35,7 @@ public class ClimaController {
 
     /**
      * Mostrar totes les ciutats
+     *
      * @return Retorna totes les ciutats
      */
     @ModelAttribute("ciutats")
@@ -49,6 +51,7 @@ public class ClimaController {
 
     /**
      * Llistar climes
+     *
      * @param model
      * @param ciutats
      * @return Retorna la vista de climes
@@ -61,6 +64,7 @@ public class ClimaController {
 
     /**
      * Afegir climes
+     *
      * @param model
      * @param ciutats
      * @return Retorna el formulari per afegir noves entrades
@@ -73,6 +77,7 @@ public class ClimaController {
 
     /**
      * Nou Clima
+     *
      * @param ciutats
      * @param ciutat
      * @param data
@@ -108,6 +113,7 @@ public class ClimaController {
 
     /**
      * Troba l'entrada de la ciutat pel seu Nom
+     *
      * @param Ciutats
      * @param nomCiutat
      * @return Retorna el nom de la ciutat
@@ -118,6 +124,7 @@ public class ClimaController {
 
     /**
      * Pronòstics de la ciutat
+     *
      * @param ciutat
      * @param ciutats
      * @param model
@@ -131,7 +138,90 @@ public class ClimaController {
         ArrayList<Pronostic> pro1 = ciu1.getPronostics();
         model.addAttribute("pronostics", pro1);
 
+        HashMap<String, String> icnosPronostics = new HashMap<String, String>();
+        icnosPronostics.put("Sol", "wi-day-sunny");
+        icnosPronostics.put("Núvol", "wi-cloud");
+        icnosPronostics.put("Pluja", "wi-rain");
+        icnosPronostics.put("Tempesta", "wi-thunderstorm");
+        icnosPronostics.put("Neu", "wi-snow");
+
+
+
+        model.addAttribute("icnosPronostics", icnosPronostics);
+
         return "pronostics";
+    }
+
+    @DeleteMapping(value = "/pronostics/{objectID}")
+    public String eliminarPronostic(@PathVariable("objectID") String id,
+                                    @ModelAttribute("ciutats") List<Ciutat> ciutats,
+                                    Model model) {
+
+        Ciutat ciutat_temp = null;
+        for (Ciutat ciutat : ciutats) {
+            Pronostic pronostic_temp = pronosticByID(ciutat.getPronostics(), id);
+            if (pronostic_temp != null) {
+                ciutat_temp = ciutat;
+                ciutat.getPronostics().remove(pronostic_temp);
+                repositori.delete(ciutat_temp);
+                repositori.save(ciutat);
+                break;
+            }
+
+        }
+        return "index";
+
+    }
+
+    public Pronostic pronosticByID(Collection<Pronostic> Pronostics, String objectID) {
+        return Pronostics.stream().filter(pronostic -> objectID.equals(pronostic.getId())).findFirst().orElse(null);
+    }
+
+    @GetMapping("/edit/{pronosticID}")
+    public String editPronostic(@PathVariable("pronosticID") String pronosticID,
+                                @ModelAttribute("ciutats") List<Ciutat> ciutats,
+                                Model model) {
+        Ciutat ciutat_temp = null;
+        for (Ciutat ciutat : ciutats) {
+            Pronostic pronostic_temp = pronosticByID(ciutat.getPronostics(), pronosticID);
+            if (pronostic_temp != null) {
+                ciutat_temp = ciutat;
+                model.addAttribute("pronostic", pronostic_temp);
+                model.addAttribute("ciutatNom", ciutat_temp.getNom());
+                break;
+            }
+
+        }
+        return "afegirClimes";
+
+    }
+
+    @PutMapping("/nouClima")
+    public String editPronosticPOST(
+            @ModelAttribute("ciutats") List<Ciutat> ciutats,
+            @RequestParam String objectID,
+            @RequestParam String ciutat,
+            @RequestParam("data")
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate data,
+            @RequestParam String temperatura,
+            @RequestParam String pronostic,
+            Model model) {
+
+        Ciutat ciutat_temp = null;
+        for (Ciutat ciutat_0 : ciutats) {
+            Pronostic pronostic_temp = pronosticByID(ciutat_0.getPronostics(), objectID);
+            if (pronostic_temp != null) {
+                ciutat_temp = ciutat_0;
+                ciutat_0.getPronostics().remove(pronostic_temp);
+                ciutat_0.getPronostics().add(new Pronostic(data, temperatura, pronostic));
+                repositori.delete(ciutat_temp);
+                repositori.save(ciutat_temp);
+                break;
+            }
+
+        }
+        return "index";
+
     }
 
     /*

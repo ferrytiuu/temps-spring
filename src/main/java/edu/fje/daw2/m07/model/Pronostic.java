@@ -28,6 +28,14 @@ public class Pronostic implements Serializable {
         this.estat = estat;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public LocalDate getData() {
         return data;
     }
