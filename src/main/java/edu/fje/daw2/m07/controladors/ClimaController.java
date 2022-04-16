@@ -39,7 +39,13 @@ public class ClimaController {
         return ciutats;
     }
 
+    @GetMapping("/llistarClimes")
+    public String llistarAlumnes(Model model, @ModelAttribute("ciutats") List<Ciutat> ciutats) {
+        model.addAttribute("ciutats", ciutats);
+        return "llistarClimes";
+    }
     /*
+
     @PostMapping("/afegirAlumne")
     public String afegirAlumne(@ModelAttribute("alumnes") List<Alumne> alumnes,
                                @RequestParam String nom,
