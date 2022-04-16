@@ -1,0 +1,86 @@
+.carta {
+    font-family: 'Noto Sans', sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 25px;
+    border: 2px solid black;
+    width: 700px;
+    height: 80px;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    margin-top: 3%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.carta:first-of-type{
+    background-image: url("../imatges/barcelona.jpg");
+    background-position: 0px 750px; 
+    color: white;   
+}
+
+.carta:nth-of-type(2n){
+    background-image: url("../imatges/madrid.jpg");
+    background-position: 0px 980px; 
+} 
+
+.carta:nth-of-type(3n){
+    background-image: url("../imatges/paris.jpg");
+    background-position: 550px 550px; 
+} 
+
+.carta:nth-of-type(4n){
+    background-image: url("../imatges/munich.jpg");
+    background-position: 0px 670px; 
+} 
+
+.nomCiutat {
+    font-size: 30px;
+    margin-left: 3%;
+
+}
+
+.dadesCiutat{
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.data {
+    font-size: 20px;
+    margin-right: 100px;
+
+}
+
+.temp {
+    font-size: 20px;
+    margin-right: 100px;
+}
+
+
+#pronostic {
+    font-size: 20px;
+    margin-right: 10px;
+} 
+
+#formulari{
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    vertical-align: middle;
+    display: box;
+    margin-top: 3%;
+    text-align: center;
+}
+
+#selectCiutat, #dataCiutat,#selectPronostic{
+    width: 500px;
+}
+
+#grausCiutat{
+    width: 100px;
+}
