@@ -61,4 +61,13 @@ public class Ciutat implements Serializable {
     public int hashCode() {
         return Objects.hash(id, nom, pronostics);
     }
+
+    @Override
+    public String toString() {
+        return "Ciutat{" +
+                "id='" + id + '\'' +
+                ", nom='" + nom + '\'' +
+                ", pronostics=" + pronostics +
+                '}';
+    }
 }

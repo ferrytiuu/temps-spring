@@ -10,6 +10,7 @@ import java.util.Date;
  * @version 1.0 24.02.21
  */
 public class Pronostic implements Serializable {
+    private int id;
     private LocalDate data;
     private String temperatura;
     private String estat;
