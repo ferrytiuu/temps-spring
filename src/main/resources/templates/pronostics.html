@@ -34,7 +34,15 @@
         <!--/*@thymesVar id="temperatura" type="String"*/-->
         <!--/*@thymesVar id="estat" type="String"*/-->
         <span class="nomCiutat" th:text="${pronostic.data}"></span>
-        <div class="dadesCiutat"><span class="data" th:text="${pronostic.temperatura} +' ªC'"> </span><span class="temp" th:text="${pronostic.estat}"></span></div>
+        <div class="dadesCiutat"><span class="data" th:text="${pronostic.temperatura} +' ªC'"> </span><span class="temp"
+                                                                                                            th:text="${pronostic.estat}"></span>
+        </div>
+        <form th:action="@{/pronostic}" th:method="delete">
+            <!--/*@thymesVar id="id" type="id"*/-->
+            <input type="hidden" th:value="${pronostic.id}">
+            <button class="btn btn-danger btn-sm" type="submit">Esborra</button>
+        </form>
     </div>
+</div>
 </body>
 </html>

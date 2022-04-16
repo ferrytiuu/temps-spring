@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- * Classe entitat que representa un alumne
- * @author sergi.grau@fje.edu
- * @version 1.0 24.02.21
+ * Classe entitat que representa una ciutat
  */
 public class Ciutat implements Serializable {
 

@@ -4,9 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Classe entitat que representa un alumne
- * @author sergi.grau@fje.edu
- * @version 1.0 24.02.21
+ * Classe entitat que representa una Ciutat
  */
 public class Ciutat implements Serializable {
     private int id;

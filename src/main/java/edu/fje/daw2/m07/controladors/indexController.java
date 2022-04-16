@@ -19,7 +19,11 @@ public class indexController {
     @Autowired
     private MeterologiaRepositori repositori;
 
-
+    /**
+     * indexController
+     * @param model
+     * @return Retorna la vista index
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     String index(Model model) {
         System.out.println("..............hit");
