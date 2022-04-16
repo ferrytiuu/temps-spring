@@ -10,7 +10,7 @@
 
 <div class="container">
 
-    <img src="spring-logo.svg" alt="Spring" style="width: 25%">
+    <img src="../static/spring-logo.svg" alt="Spring" style="width: 25%">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -29,6 +29,18 @@
             </div>
         </div>
     </nav>
+    <ul class="list-group">
+        <!--@thymesVar id="ciutat" type="edu.fje.daw2.m07.model.Ciutat"-->
+        <!--@thymesVar id="ciutats" type="edu.fje.daw2.m07.model.Ciutat"-->
+
+        <li class="list-group-item"  th:each="ciutat: ${ciutats}" >
+            <!--/*@thymesVar id="nom" type="String"*/-->
+            <span th:text="${ciutat.nom}" />
+            <!--/*@thymesVar id="data" type="LocalDate"*/-->
+            <span th:text="${ciutat.pronostics[0].data}" />
+        </li>
+
+    </ul>
 </div>
 
 </body>

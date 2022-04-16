@@ -1,6 +1,6 @@
 package edu.fje.daw2.m07.controladors;
 
-import edu.fje.daw2.m07.entities.Ciutat;
+import edu.fje.daw2.m07.model.Ciutat;
 import edu.fje.daw2.m07.model.Alumne;
 import edu.fje.daw2.m07.repositoris.M3_AlumneRepositori;
 import edu.fje.daw2.m07.repositoris.MeterologiaRepositori;

@@ -1,6 +1,6 @@
 package edu.fje.daw2.m07.model;
 
-import edu.fje.daw2.m07.entities.Pronostic;
+import edu.fje.daw2.m07.model.Pronostic;
 import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
@@ -20,7 +20,6 @@ public class Ciutat implements Serializable {
     private String nom;
     private ArrayList<Pronostic> pronostics;
 
-    public Ciutat(){}
     public Ciutat(String nom) {
         this.nom = nom;
         this.pronostics = new ArrayList<>();

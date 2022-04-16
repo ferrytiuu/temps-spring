@@ -1,6 +1,6 @@
 package edu.fje.daw2.m07.repositoris;
 
-import edu.fje.daw2.m07.entities.Ciutat;
+import edu.fje.daw2.m07.model.Ciutat;
 import edu.fje.daw2.m07.model.Alumne;
 import org.springframework.data.mongodb.repository.MongoRepository;
 

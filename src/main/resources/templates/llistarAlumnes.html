@@ -17,7 +17,7 @@
     </nav>
     <ul class="list-group">
         <!--@thymesVar id="alumne" type="edu.fje.daw2.m07.model.Alumne"-->
-        <li class="list-group-item"  th:each="alumne, dades: ${alumnes}" >
+        <li class="list-group-item"  th:each="alumne, dades: ${alumne}" >
             <span th:text="${dades.index}" />
             <!--/*@thymesVar id="nom" type="String"*/-->
             <!--/*@thymesVar id="nota" type="int"*/-->
