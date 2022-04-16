@@ -21,14 +21,14 @@ import java.util.List;
  * @version 1.0 24.02.21
  */
 @Controller
-@SessionAttributes("ciutat")
+@SessionAttributes("ciutats")
 public class ClimaController {
 
     @Autowired
     private MeterologiaRepositori repositori;
 
     //Set<Alumne> alumnes = new HashSet<>();
-    @ModelAttribute("ciutat")
+    @ModelAttribute("ciutats")
     public List<Ciutat> inicialitzar() {
 
         List<Ciutat> ciutats= new ArrayList<>();
