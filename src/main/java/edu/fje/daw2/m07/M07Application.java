@@ -51,7 +51,7 @@ public class M07Application {
         public void run(String... args) throws Exception {
 
             //Joc de proves de MongoDB
-            repositori.deleteAll();
+            /*repositori.deleteAll();
             Ciutat ciu1 = new Ciutat("Barcelona");
             ArrayList<Pronostic> pro1 = new ArrayList<Pronostic>();
 
@@ -64,11 +64,11 @@ public class M07Application {
 
             pro1.add(new Pronostic(lt,"23","s"));
             ciu1.setPronostics(pro1);
-            repositori.save(ciu1);
+            repositori.save(ciu1);*/
             for (Ciutat c : repositori.findAll()) {
                 System.out.println(c);
             }
-            System.out.println();
+
         }
     }
 }

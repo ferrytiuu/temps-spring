@@ -2,24 +2,21 @@ package edu.fje.daw2.m07.controladors;
 
 import edu.fje.daw2.m07.model.Ciutat;
 import edu.fje.daw2.m07.model.Alumne;
+import edu.fje.daw2.m07.model.Pronostic;
 import edu.fje.daw2.m07.repositoris.M3_AlumneRepositori;
 import edu.fje.daw2.m07.repositoris.MeterologiaRepositori;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-/**
- * Controlador principal del projecte
- * Implementa un CRUD per l'entitat alumne. Fa servir contingut estatic i
- * plantilles thymeleaf com a vista
- *
- * @author sergi.grau@fje.edu
- * @version 1.0 24.02.21
- */
 @Controller
 @SessionAttributes("ciutats")
 public class ClimaController {
@@ -31,7 +28,7 @@ public class ClimaController {
     @ModelAttribute("ciutats")
     public List<Ciutat> inicialitzar() {
 
-        List<Ciutat> ciutats= new ArrayList<>();
+        List<Ciutat> ciutats = new ArrayList<>();
         for (Ciutat d : repositori.findAll()) {
             ciutats.add(d);
         }
@@ -40,10 +37,47 @@ public class ClimaController {
     }
 
     @GetMapping("/llistarClimes")
-    public String llistarAlumnes(Model model, @ModelAttribute("ciutats") List<Ciutat> ciutats) {
+    public String llistarClimes(Model model, @ModelAttribute("ciutats") List<Ciutat> ciutats) {
         model.addAttribute("ciutats", ciutats);
         return "llistarClimes";
     }
+
+    @GetMapping("/afegirClimes")
+    public String afegirClimes(Model model, @ModelAttribute("ciutats") List<Ciutat> ciutats) {
+        model.addAttribute("ciutats", ciutats);
+        return "afegirClimes";
+    }
+
+    @PostMapping("/nouClima")
+
+    public String nouClima(@ModelAttribute("ciutats") List<Ciutat> ciutats,
+                           @RequestParam String ciutat,
+                           @RequestParam("data")
+                               @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate data,
+                           @RequestParam String temperatura,
+                           @RequestParam String pronostic,
+                           Model model) {
+        Ciutat ciu1 = ciutatPerNom(ciutats,ciutat);
+        ArrayList<Pronostic> pro1 = ciu1.getPronostics();
+        ZoneId zid = ZoneId.of("Europe/Paris");
+        pro1.add(new Pronostic(data, temperatura, pronostic));
+        ciu1.setPronostics(pro1);
+
+        repositori.save(ciu1);
+
+
+        //if(alumnes == null) alumnes = new ArrayList<Alumne>();
+        /*alumnes.add(a);
+        if (!model.containsAttribute("alumnes")) {
+            model.addAttribute("alumnes", alumnes);
+        }*/
+        return "index";
+    }
+
+    public Ciutat ciutatPerNom(Collection<Ciutat> Ciutats, String nomCiutat) {
+        return Ciutats.stream().filter(ciutat -> nomCiutat.equals(ciutat.getNom())).findFirst().orElse(null);
+    }
+
     /*
 
     @PostMapping("/afegirAlumne")
