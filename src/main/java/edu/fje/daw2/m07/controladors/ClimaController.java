@@ -8,9 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Controlador principal del projecte
@@ -22,7 +20,7 @@ import java.util.Set;
  */
 @Controller
 @SessionAttributes("alumnes")
-public class M1_AlumneController {
+public class ClimaController {
 
     @Autowired
     private M3_AlumneRepositori repositori;
