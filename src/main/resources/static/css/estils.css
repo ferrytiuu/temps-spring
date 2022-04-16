@@ -19,25 +19,20 @@
 }
 
 .carta:first-of-type{
-    background-image: url("../imatges/barcelona.jpg");
-    background-position: 0px 750px; 
-    color: white;   
+    color: black;
 }
 
 .carta:nth-of-type(2n){
-    background-image: url("../imatges/madrid.jpg");
-    background-position: 0px 980px; 
-} 
+    color: black;
+}
 
 .carta:nth-of-type(3n){
-    background-image: url("../imatges/paris.jpg");
-    background-position: 550px 550px; 
-} 
+    color: black;
+}
 
 .carta:nth-of-type(4n){
-    background-image: url("../imatges/munich.jpg");
-    background-position: 0px 670px; 
-} 
+    color: black;
+}
 
 .nomCiutat {
     font-size: 30px;
@@ -75,6 +70,10 @@
     display: box;
     margin-top: 3%;
     text-align: center;
+}
+
+a{
+    text-decoration: none;
 }
 
 #selectCiutat, #dataCiutat,#selectPronostic{

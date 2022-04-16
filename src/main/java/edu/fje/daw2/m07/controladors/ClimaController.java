@@ -49,15 +49,14 @@ public class ClimaController {
     }
 
     @PostMapping("/nouClima")
-
     public String nouClima(@ModelAttribute("ciutats") List<Ciutat> ciutats,
                            @RequestParam String ciutat,
                            @RequestParam("data")
-                               @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate data,
+                           @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate data,
                            @RequestParam String temperatura,
                            @RequestParam String pronostic,
                            Model model) {
-        Ciutat ciu1 = ciutatPerNom(ciutats,ciutat);
+        Ciutat ciu1 = ciutatPerNom(ciutats, ciutat);
         ArrayList<Pronostic> pro1 = ciu1.getPronostics();
         ZoneId zid = ZoneId.of("Europe/Paris");
         pro1.add(new Pronostic(data, temperatura, pronostic));
@@ -76,6 +75,17 @@ public class ClimaController {
 
     public Ciutat ciutatPerNom(Collection<Ciutat> Ciutats, String nomCiutat) {
         return Ciutats.stream().filter(ciutat -> nomCiutat.equals(ciutat.getNom())).findFirst().orElse(null);
+    }
+
+    @GetMapping("/pronostics/{ciutat}")
+    public String singlePathVariable(@PathVariable("ciutat") String ciutat,
+                                     @ModelAttribute("ciutats") List<Ciutat> ciutats,
+                                     Model model) {
+        Ciutat ciu1 = ciutatPerNom(ciutats, ciutat);
+        ArrayList<Pronostic> pro1 = ciu1.getPronostics();
+        model.addAttribute("pronostics", pro1);
+
+        return "pronostics";
     }
 
     /*

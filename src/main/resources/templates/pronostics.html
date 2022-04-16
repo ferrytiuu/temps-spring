@@ -5,7 +5,7 @@
     <title>DAW2</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link th:href="@{/css/estils.css}" rel="stylesheet" />
+    <link th:href="@{/css/estils.css}" rel="stylesheet"/>
 </head>
 
 <body>
@@ -26,17 +26,15 @@
 </nav>
 
 <div id="container">
-    <!--@thymesVar id="ciutat" type="edu.fje.daw2.m07.model.Ciutat"-->
-    <!--@thymesVar id="ciutats" type="edu.fje.daw2.m07.model.Ciutat"-->
+    <!--@thymesVar id="pronostic" type="edu.fje.daw2.m07.model.Pronostic"-->
+    <!--@thymesVar id="pronostics" type="edu.fje.daw2.m07.model.Pronostic"-->
 
-    <a th:each="ciutat: ${ciutats}"  th:href="@{'/pronostics/' + ${ciutat.nom}}">
-        <div class="carta" >
-            <!--/*@thymesVar id="nom" type="String"*/-->
-            <!--/*@thymesVar id="temperatura" type="String"*/-->
-            <!--/*@thymesVar id="estat" type="String"*/-->
-            <span class="nomCiutat" th:text="${ciutat.nom}"></span><div class="dadesCiutat"><span class="data" th:text="${ciutat.pronostics[0].data}"></span><span class="temp" th:text="${ciutat.pronostics[0].temperatura} +' ªC'"></span><span class="pronostic" th:text="${ciutat.pronostics[0].estat}"></span></div>
-        </div>
-    </a>
-</div>
+    <div class="carta" th:each="pronostic: ${pronostics}">
+        <!--/*@thymesVar id="data" type="LocalDate"*/-->
+        <!--/*@thymesVar id="temperatura" type="String"*/-->
+        <!--/*@thymesVar id="estat" type="String"*/-->
+        <span class="nomCiutat" th:text="${pronostic.data}"></span>
+        <div class="dadesCiutat"><span class="data" th:text="${pronostic.temperatura} +' ªC'"> </span><span class="temp" th:text="${pronostic.estat}"></span></div>
+    </div>
 </body>
 </html>
