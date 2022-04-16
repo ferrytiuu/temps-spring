@@ -5,9 +5,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 /**
- * Classe entitat que representa un alumne
- * @author sergi.grau@fje.edu
- * @version 1.0 24.02.21
+ * Classe entitat que representa un pronòstic
  */
 public class Pronostic implements Serializable {
     private LocalDate data;

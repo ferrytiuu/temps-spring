@@ -28,8 +28,6 @@ public class M07Application {
      * Classe principal d'Spring
      * utilitza un microservei per accedir a MongoDB.
      * A més realitza una càrrega inicial de dades
-     * @author sergi.grau@fje.edu
-     * @version  1.0 4.4.2019
      */
     @SpringBootApplication
     @RestController

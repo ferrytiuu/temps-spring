@@ -17,14 +17,25 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Controlador del projecte
+ */
 @Controller
 @SessionAttributes("ciutats")
 public class ClimaController {
 
+    /**
+     * Repositori
+     */
     @Autowired
     private MeterologiaRepositori repositori;
 
     //Set<Alumne> alumnes = new HashSet<>();
+
+    /**
+     * Mostrar totes les ciutats
+     * @return Retorna totes les ciutats
+     */
     @ModelAttribute("ciutats")
     public List<Ciutat> inicialitzar() {
 
@@ -36,18 +47,40 @@ public class ClimaController {
         return ciutats;
     }
 
+    /**
+     * Llistar climes
+     * @param model
+     * @param ciutats
+     * @return Retorna la vista de climes
+     */
     @GetMapping("/llistarClimes")
     public String llistarClimes(Model model, @ModelAttribute("ciutats") List<Ciutat> ciutats) {
         model.addAttribute("ciutats", ciutats);
         return "llistarClimes";
     }
 
+    /**
+     * Afegir climes
+     * @param model
+     * @param ciutats
+     * @return Retorna el formulari per afegir noves entrades
+     */
     @GetMapping("/afegirClimes")
     public String afegirClimes(Model model, @ModelAttribute("ciutats") List<Ciutat> ciutats) {
         model.addAttribute("ciutats", ciutats);
         return "afegirClimes";
     }
 
+    /**
+     * Nou Clima
+     * @param ciutats
+     * @param ciutat
+     * @param data
+     * @param temperatura
+     * @param pronostic
+     * @param model
+     * @return Crea una nova entrada en la BD
+     */
     @PostMapping("/nouClima")
     public String nouClima(@ModelAttribute("ciutats") List<Ciutat> ciutats,
                            @RequestParam String ciutat,
@@ -73,10 +106,23 @@ public class ClimaController {
         return "index";
     }
 
+    /**
+     * Troba l'entrada de la ciutat pel seu Nom
+     * @param Ciutats
+     * @param nomCiutat
+     * @return Retorna el nom de la ciutat
+     */
     public Ciutat ciutatPerNom(Collection<Ciutat> Ciutats, String nomCiutat) {
         return Ciutats.stream().filter(ciutat -> nomCiutat.equals(ciutat.getNom())).findFirst().orElse(null);
     }
 
+    /**
+     * Pronòstics de la ciutat
+     * @param ciutat
+     * @param ciutats
+     * @param model
+     * @return Retorna els pronòstics de la ciutat
+     */
     @GetMapping("/pronostics/{ciutat}")
     public String singlePathVariable(@PathVariable("ciutat") String ciutat,
                                      @ModelAttribute("ciutats") List<Ciutat> ciutats,
